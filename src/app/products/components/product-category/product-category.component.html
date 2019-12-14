@@ -1,0 +1,9 @@
+<div class="category">
+  <div class="product-category">
+    <ul class="list-group" id="category-list">
+      <li (click)="getProductByCategory('all')" class="list-group-item" [class.active]="selectedCategory === 'all'">
+        {{ 'All' | translate }}</li>
+      <li *ngFor="let category of categories" (click)="getProductByCategory(category._id)" class="list-group-item" [class.active]="selectedCategory === category._id">
+        {{ category.name }}</li>
+    </ul>
+  </div>

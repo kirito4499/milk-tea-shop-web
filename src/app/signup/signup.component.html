@@ -1,28 +1,96 @@
-<div class="login-page" [@routerTransition]>
-    <div class="row justify-content-md-center">
-        <div class="col-md-4">
-            <img class="user-avatar" src="assets/images/logo.png" width="150px" />
-            <h1>SB Admin BS4 Angular8</h1>
-            <form role="form">
-                <div class="form-content">
-                    <div class="form-group">
-                        <input type="text" class="form-control input-underline input-lg" id="" placeholder="{{ 'Full Name' | translate }}">
-                    </div>
+<div class="container-fluid mt-5 pt-5 bg-light" [@routerTransition]>
+    <div class="row">
+        <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-sm-8 offset-sm-2">
+            <div class="card">
+                <div class="card-body">
+                    <!-- <a [routerLink]="['/login']"
+                        class="float-right btn btn-outline-primary">{{ 'Login' | translate }}</a> -->
+                    <h2 class="card-title">{{ 'Register' | translate }}</h2>
+                    <form [formGroup]="registerForm" (ngSubmit)="onRegisterUser()">
+                        <div class="form-group">
+                            <label class="font-weight-bold">Email <span class="text-danger">*</span></label>
+                            <input type="text" formControlName="email" class="form-control"
+                                [ngClass]="{'is-invalid': registerForm.controls['email'].errors && (registerForm.controls['email'].dirty || registerForm.controls['email'].touched) }" />
+                            <div *ngIf="registerForm.controls['email'].errors && (registerForm.controls['email'].dirty || registerForm.controls['email'].touched)"
+                                class="invalid-feedback">
+                                <div *ngIf="registerForm.controls['email'].errors.required">Email is required</div>
+                                <div *ngIf="registerForm.controls['email'].errors?.serverError">
+                                    {{ registerForm.get('email').errors?.serverError }}</div>
+                            </div>
+                        </div>
 
-                    <div class="form-group">
-                        <input type="text" class="form-control input-underline input-lg" id="" placeholder="{{ 'Email' | translate }}">
-                    </div>
+                        <div class="form-group">
+                            <label class="font-weight-bold">Password<span class="text-danger">*</span></label>
+                            <input type="password" formControlName="password" class="form-control"
+                                [ngClass]="{'is-invalid': registerForm.controls['password'].errors && (registerForm.controls['password'].dirty || registerForm.controls['password'].touched) }" />
+                            <div *ngIf="registerForm.controls['password'].errors && (registerForm.controls['password'].dirty || registerForm.controls['password'].touched)"
+                                class="invalid-feedback">
+                                <div *ngIf="registerForm.controls['password'].errors.required">Password is required
+                                </div>
+                                <div *ngIf="registerForm.controls['password'].errors?.serverError">
+                                    {{ registerForm.get('password').errors?.serverError }}</div>
+                            </div>
+                        </div>
 
-                    <div class="form-group">
-                        <input type="password" class="form-control input-underline input-lg" id="" placeholder="{{ 'Password' | translate }}">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control input-underline input-lg" id="" placeholder="{{ 'Repeat Password' | translate }}">
-                    </div>
+                        <div class="form-group">
+                            <label class="font-weight-bold">Confirm Password <span class="text-danger">*</span></label>
+                            <input type="password" formControlName="password2" class="form-control"
+                                [ngClass]="{'is-invalid': registerForm.controls['password2'].errors && (registerForm.controls['password2'].dirty || registerForm.controls['password2'].touched) }" />
+                            <div *ngIf="registerForm.controls['password2'].errors && (registerForm.controls['password2'].dirty || registerForm.controls['password2'].touched)"
+                                class="invalid-feedback">
+                                <div *ngIf="registerForm.controls['password2'].errors.required">Confirm Password is
+                                    required</div>
+                                <div *ngIf="registerForm.controls['password2'].errors?.serverError">
+                                    {{ registerForm.get('password2').errors?.serverError }}</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="font-weight-bold">Phone Number<span class="text-danger">*</span></label>
+                            <input type="text" formControlName="phoneNumber" class="form-control"
+                                [ngClass]="{'is-invalid': registerForm.controls['phoneNumber'].errors && (registerForm.controls['phoneNumber'].dirty || registerForm.controls['phoneNumber'].touched) }" />
+                            <div *ngIf="registerForm.controls['phoneNumber'].errors && (registerForm.controls['phoneNumber'].dirty || registerForm.controls['phoneNumber'].touched)"
+                                class="invalid-feedback">
+                                <div *ngIf="registerForm.controls['phoneNumber'].errors.required">Phone Number is
+                                    required</div>
+                                <div *ngIf="registerForm.controls['phoneNumber'].errors?.serverError">
+                                    {{ registerForm.get('phoneNumber').errors?.serverError }}</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="font-weight-bold">First Name<span class="text-danger">*</span></label>
+                            <input type="text" formControlName="firstName" class="form-control"
+                                [ngClass]="{'is-invalid': registerForm.controls['firstName'].errors && (registerForm.controls['firstName'].dirty || registerForm.controls['firstName'].touched) }" />
+                            <div *ngIf="registerForm.controls['firstName'].errors && (registerForm.controls['firstName'].dirty || registerForm.controls['firstName'].touched)"
+                                class="invalid-feedback">
+                                <div *ngIf="registerForm.controls['firstName'].errors.required">First Name is required
+                                </div>
+                                <div *ngIf="registerForm.controls['firstName'].errors?.serverError">
+                                    {{ registerForm.get('firstName').errors?.serverError }}</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="font-weight-bold">Last Name<span class="text-danger">*</span></label>
+                            <input type="text" formControlName="lastName" class="form-control"
+                                [ngClass]="{'is-invalid': registerForm.controls['lastName'].errors && (registerForm.controls['lastName'].dirty || registerForm.controls['lastName'].touched) }" />
+                            <div *ngIf="registerForm.controls['lastName'].errors && (registerForm.controls['lastName'].dirty || registerForm.controls['lastName'].touched)"
+                                class="invalid-feedback">
+                                <div *ngIf="registerForm.controls['lastName'].errors.required">Last Name is required
+                                </div>
+                                <div *ngIf="registerForm.controls['lastName'].errors?.serverError">
+                                    {{ registerForm.get('lastName').errors?.serverError }}</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" [disabled]="registerForm.pristine || registerForm.invalid" class="btn btn-primary btn-block">{{ 'Register' | translate }}</button>
+                        </div>
+
+                    </form>
                 </div>
-                <a class="btn rounded-btn" [routerLink]="['/dashboard']">{{ 'Register' | translate }}</a>&nbsp;
-                <a class="btn rounded-btn" [routerLink]="['/login']">{{ 'Log in' | translate }}</a>
-            </form>
+            </div>
         </div>
     </div>
 </div>

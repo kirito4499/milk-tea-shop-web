@@ -1,0 +1,84 @@
+<div class="row">
+  <div class="col-9">
+    <div class="card mt-3">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <div>{{ 'Product' | translate }}</div>
+        <div>
+          <button (click)="createProduct()" class="btn btn-success btn-sm">New Product</button>
+        </div>
+      </div>
+      <div class="card-body table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Category</th>
+              <th>Price</th>
+              <th>Image</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of products; index as i">
+              <th scope="row">{{ i + 1 }}</th>
+              <td>{{ product.name }}</td>
+              <th>{{ getCategoryById(product.categoryId) }}</th>
+              <td>{{ product.price }}</td>
+              <td><img class="product-image-small" [src]="product.imageURL" /></td>
+              <td> <button (click)="editProduct(product)" class="btn btn-sm btn-success w-100">Edit</button> </td>
+              <td> <button (click)="deleteProduct(product)" class="btn btn-sm btn-danger w-100">Datele</button> </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-3">
+    <div class="card mt-3">
+      <div class="card-header">
+        <h6 class="modal-title" id="modal-basic-title">Product {{ productAction }}</h6>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="productForm">
+          <div class="form-group">
+            <label for="">Name</label>
+            <input type="text" formControlName="name" class="form-control" placeholder="">
+          </div>
+          <div class="form-group">
+            <label for="">Price</label>
+            <input type="text" formControlName="price" class="form-control" placeholder="">
+          </div>
+          <div class="form-group">
+            <label for="">Image Url</label>
+            <input type="text" formControlName="imageURL" class="form-control" placeholder="">
+          </div>
+          <div class="form-group">
+            <label for="">Category</label>
+            <select formControlName="categoryId" class="form-control">
+              <option value="">Choose Category</option>
+              <option *ngFor="let category of categories" [ngValue]="category['_id']">{{ category.name }}</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="card-footer">
+        <button *ngIf="productAction === 'edit'" type="button" class="btn btn-success" (click)="putEditProduct()">Update</button>
+        <button *ngIf="productAction === 'create'" type="button" class="btn btn-primary" (click)="postCreateProduct()">Create</button>
+      </div>
+    </div>
+    <!-- <div class="card mt-3">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <div>{{ 'Category' | translate }}</div>
+        <div>
+          <button (click)="openModal()" class="btn btn-success btn-sm">New Category</button>
+        </div>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li *ngFor="let category of categories" class="list-group-item">{{ category.name }}</li>
+      </ul>
+    </div> -->
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2">
+      <nav class="sidebar mt-3">
+        <div class="card-body p-0">
+          <div class="list-group">
+            <a routerLink="order" [routerLinkActive]="['router-link-active', 'active']" class="list-group-item">
+              <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+              &nbsp;
+              <span>{{ 'Order' | translate }}</span>
+            </a>
+            <a routerLink="product" [routerLinkActive]="['router-link-active', 'active']" class="list-group-item">
+              <i class="fa fa-coffee" aria-hidden="true"></i>
+              &nbsp;
+              <span>{{ 'Product' | translate }}</span>
+            </a>
+            <!-- <a routerLink="category" [routerLinkActive]="['router-link-active', 'active']" class="list-group-item">
+                        <i class="fa fa-list" aria-hidden="true"></i>
+                        &nbsp;
+                        <span>{{ 'Category' | translate }}</span>
+                    </a> -->
+          </div>
+        </div>
+      </nav>
+
+      <div class="card mt-3">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <div>{{ 'Category' | translate }}</div>
+            <!-- <div>
+              <button (click)="openModal()" class="btn btn-success btn-sm">New Category</button>
+            </div> -->
+          </div>
+          <ul class="list-group list-group-flush">
+            <li *ngFor="let category of categories" class="list-group-item">{{ category.name }}</li>
+          </ul>
+        </div>
+    </div>
+    <div class="col-md-10">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

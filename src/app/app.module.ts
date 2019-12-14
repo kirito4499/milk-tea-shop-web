@@ -7,7 +7,12 @@ import { LanguageTranslationModule } from './shared/modules/language-translation
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AuthGuard } from './shared';
+import { AuthGuard, AdminGuard } from './shared';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CoreModule } from './core';
+import { ProductsModule } from './products/products.module';
+import { SharedModule } from './shared/shared.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
     imports: [
@@ -16,10 +21,16 @@ import { AuthGuard } from './shared';
         BrowserAnimationsModule,
         HttpClientModule,
         LanguageTranslationModule,
-        AppRoutingModule
+        AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        CoreModule,
+        ProductsModule,
+        SharedModule,
+        TranslateModule.forRoot()
     ],
     declarations: [AppComponent],
-    providers: [AuthGuard],
+    providers: [AuthGuard, AdminGuard],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

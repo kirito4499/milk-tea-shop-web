@@ -1,0 +1,29 @@
+<div class="container-fluid bg-light">
+  <div class="row">
+    <div class="col-lg-9">
+      <h3 class="font-weight-bold mt-1">MENU</h3>
+      <div class="row">
+        <div class="col-md-3">
+          <app-product-category [categories]="categories" (changeCategory)="filterProductByCategory($event)">
+          </app-product-category>
+        </div>
+        <div class="col-md-9">
+          <!-- <app-product-list [(products)]="products"></app-product-list> -->
+          <div class="row">
+            <div class="col-12">
+              <div class="card-deck">
+                <div *ngFor="let product of products" class="col-md-4">
+                  <app-product-item [product]="product" (addEvent)="addProductToCart($event)"></app-product-item>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>        
+      </div>
+    </div>
+    <div class="col-lg-3">
+      <app-product-cart [(order)]="order"></app-product-cart>
+    </div>
+  </div>
+</div>
